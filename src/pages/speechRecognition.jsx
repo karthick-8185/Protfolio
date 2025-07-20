@@ -51,6 +51,7 @@ function Landingpage() {
     }
     setSppech('')
   };
+  console.log("hii");
 
   return (
     <div className='bg-'>
