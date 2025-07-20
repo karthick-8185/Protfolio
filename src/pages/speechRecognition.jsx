@@ -55,6 +55,7 @@ function Landingpage() {
   return (
     <div className='bg-'>
       <h1>Speech Recognition Demo</h1>
+      <h1>Speech Recognition Demo</h1>
       <button onClick={startSpeechRecognition} disabled={isListening}>
         Start Listening
       </button>
