@@ -1,39 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './app.css';
-import Landingpage from './pages/Landingpage'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+import "./app.css";
+import Landingpage from "./pages/Landingpage";
+import Header from "./Components/Header";
+import About from "./pages/About";
+import SplashCursor from "./Components/SplashCursor";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  // Apply theme to document root
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (theme === "dark") {
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  // Toggle function to pass down
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   return (
-    <>
-    <Landingpage/>
-    </>
-    // <>
-    //   <div>
-    //     <a href="https://vite.dev" target="_blank">
-    //       <img src={viteLogo} className="logo" alt="Vite logo" />
-    //     </a>
-    //     <a href="https://react.dev" target="_blank">
-    //       <img src={reactLogo} className="logo react" alt="React logo" />
-    //     </a>
-    //   </div>
-    //   <h1>Vite + React</h1>
-    //   <div className="card">
-    //     <button onClick={() => setCount((count) => count + 1)}>
-    //       count is {count}
-    //     </button>
-    //     <p>
-    //       Edit <code>src/App.jsx</code> and save to test HMR
-    //     </p>
-    //   </div>
-    //   <p className="read-the-docs">
-    //     Click on the Vite and React logos to learn more
-    //   </p>
-    // </>
-  )
+    <Router>
+      <Header theme={theme} toggleTheme={toggleTheme} />
+      <SplashCursor />
+      <Routes>
+        <Route path="/about" element={<About />} />
+        <Route path="/landingpage" element={<Landingpage />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
