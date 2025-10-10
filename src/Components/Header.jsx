@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes, FaMoon, FaSun } from "react-icons/fa";
 import { FcHome, FcAbout } from "react-icons/fc";
+import { IoMail } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
 function Header() {
@@ -23,20 +24,24 @@ function Header() {
   };
 
   return (
-    <header className="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50 transition-colors">
+    <header className="bg-black dark:bg-gray-900 shadow-md sticky top-0 z-50 transition-colors">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
         <div className="text-2xl font-bold text-blue-600 dark:text-blue-300">MyPortfolio</div>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center space-x-6">
-          <Link to="/landingpage" className="text-gray-700 dark:text-gray-200 hover:text-blue-600 flex items-center gap-1">
+          <Link to="/landingpage" className="text-white dark:text-gray-200 hover:text-blue-600 flex items-center gap-1">
             <FcHome />
             Home
           </Link>
-          <Link to="/about" className="text-gray-700 dark:text-gray-200 hover:text-blue-600 flex items-center gap-1">
+          <Link to="/about" className="text-white dark:text-gray-200 hover:text-blue-600 flex items-center gap-1">
             <FcAbout />
             About
+          </Link>
+          <Link to="/contactme" className="text-white dark:text-gray-200 hover:text-blue-600 flex items-center gap-1">
+            <IoMail />
+            Contact
           </Link>
           <button onClick={toggleTheme} className="text-xl text-gray-700 dark:text-gray-200">
             {theme === 'dark' ? <FaSun /> : <FaMoon />}
@@ -53,8 +58,8 @@ function Header() {
       {isOpen && (
         <div className="md:hidden bg-white px-4 pb-4 space-y-2">
           <Link to="/" className="block text-gray-700 dark:text-gray-200" onClick={() => setIsOpen(false)}>Home</Link>
-          <Link to="/about" className="block text-gray-700 dark:text-gray-200" onClick={() => setIsOpen(false)}>About</Link>
-          <button onClick={toggleTheme} className="text-xl text-gray-700 dark:text-gray-200">
+          <Link to="/about" className="block text-white dark:text-gray-200" onClick={() => setIsOpen(false)}>About</Link>
+          <button onClick={toggleTheme} className="text-xl text-white dark:text-gray-200">
             {theme === 'dark' ? <FaSun /> : <FaMoon />}
           </button>
         </div>
